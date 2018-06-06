@@ -1,0 +1,45 @@
+.container{
+    display:flex;
+    flex-direction:column;
+    /* border:1px red solid; */
+}
+
+
+.fighters{
+    display:flex;
+    flex-direction:row;
+    /* border:1px blue solid; */
+}
+
+.fighter-img{
+    width:120px;
+    height:100px;
+}
+
+.fighter-container{
+    border:1px green solid;
+    margin-right:5px;
+    margin-left: 5px;
+    text-align:center;
+    width:50%;
+    background-color:white;
+}
+
+
+.picked{
+    border:1px green solid;
+}
+
+.health{
+    font-weight:bold;
+    color:skyblue;
+    background-color:black;
+}
+
+#attack{
+    width:100px;
+}
+
+.chosen-fighter{
+    background-color:gray;
+}
