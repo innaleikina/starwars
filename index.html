@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./resources/css/style.css">
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+        <script src="https://use.fontawesome.com/f7ec0209f5.js"></script>
     <title>Star Wars RPG</title>
 </head>
 
@@ -84,10 +85,10 @@
         </div>
 
         <div class="ultimate-win">
-                <div class="ultimate-win-text">
-                </div>
-                <button id="resetWin" class="button-style"> restart </button>
+            <div class="ultimate-win-text">
             </div>
+            <button id="resetWin" class="button-style"> restart </button>
+        </div>
 
         <div class="fight-area-all container">
 
@@ -100,8 +101,10 @@
             <div class="fight-section container">
                 <h3> Fight Section</h3>
                 <button id="attack"> attack </button>
-                <p id="fighter-damage"></p>
-                <p id="enemy-damage"></p>
+                <div class="attack-info-all container">
+                    <p id="fighter-damage"></p>
+                    <p id="enemy-damage"></p>
+                </div>
             </div>
 
 
@@ -110,8 +113,15 @@
                 <h3> Your Enemy</h3>
             </div>
 
-   </div>
- </div>
+        </div>
+    </div>
+
+    <footer class="container">
+       <p id="madeBy"> made by Inna Leikina</p>
+      <a href="https://github.com/innaleikina" target="_blank"> <i class="fa fa-github-square fa-2x" aria-hidden="true"></i></a>
+    </footer>
+    
+    
     <script src="./resources/js/index.js">
     </script>
 

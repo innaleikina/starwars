@@ -54,8 +54,8 @@ let defeatedFighters = [];
 
 function printStats() {
     for (var i = 0; i < fighters.length; i++) {
-        fighters[i].selectorHealth.text(  fighters[i].name + "'s"  + " health is " + fighters[i].health);
-        fighters[i].selectorAttack.text(fighters[i].name + "'s"  + " attack is " +  fighters[i].attackNew);
+        fighters[i].selectorHealth.text(fighters[i].name + "'s" + " health is " + fighters[i].health);
+        fighters[i].selectorAttack.text(fighters[i].name + "'s" + " attack is " + fighters[i].attackNew);
     }
 }
 printStats();
@@ -68,14 +68,20 @@ $(".fighter-container").click(function () {
     // console.log(this);
     if (!fighterChosen) {
         // $(".fighter-container").appendTo(".enemy");
-         $(this).appendTo(".chosen-fighter");
-         $(this).unbind("click");
-         $("#pick").text("PICK AN ENEMY");
+        $(this).appendTo(".chosen-fighter");
+        $(this).unbind("click");
+        $(this).hover(function () {
+           $(this).css("cursor","auto");
+        });
+        $("#pick").text("PICK AN ENEMY");
         //makes choosing a new fighter impossible, because the fighterChosen is now true
         fighterChosen = true;
         fighter = $(".chosen-fighter").children(".fighter-container");
     } else if (!enemyChosen) {
         $(this).appendTo(".enemy");
+        $(this).hover(function () {
+            $(this).css("cursor","auto");
+         });
         //makes choosing a new fighter impossible, because the enemyChosen is now true
         enemyChosen = true;
         enemy = $(".enemy").children(".fighter-container");
@@ -100,9 +106,10 @@ $("#attack").click(function () {
         }
     }
 
-     //fight container info populates dynamically
-    $("#fighter-damage").text(fighterObj.name + " damaged " +  enemyObj.name + " for " + fighterObj.attackNew + " points!");
-    $("#enemy-damage").text(enemyObj.name + " damaged " +  fighterObj.name + " for " + enemyObj.attackNew + " points!");
+    //fight container info populates dynamically
+    $("#fighter-damage").text(fighterObj.name + " damaged " + enemyObj.name + " for " + fighterObj.attackNew + " points!");
+    $("#enemy-damage").text(enemyObj.name + " damaged " + fighterObj.name + " for " + enemyObj.attackNew + " points!");
+    $(".attack-info-all").css("border","1px black solid");
 
     //all the health related functions
     function subtractHealth() {
@@ -110,29 +117,31 @@ $("#attack").click(function () {
         enemyObj.health = enemyObj.health - fighterObj.attackNew;
         fighterObj.attackNew = fighterObj.attackNew + fighterObj.attack;
 
-        if(fighterObj.health <= 0){
+        if (fighterObj.health <= 0) {
             console.log("you lost!")
+            $(".info-pop-up-text").text(enemyObj.name + " has defeated you!");
+            $(".info-pop-up").css("display", "flex");
         }
 
-        if(enemyObj.health <= 0){
+        if (enemyObj.health <= 0) {
             $(".info-pop-up-text").text(enemyObj.name + " is dead! Pick your next enemy!");
             $(".info-pop-up").css("display", "flex");
-            setTimeout(function(){
+            setTimeout(function () {
                 $(".info-pop-up").css("display", "none");
             }, 2500);
-         
+
             $(".enemy").empty();
             enemyChosen = false;
             defeatedFighters.push(enemyObj);
             console.log(defeatedFighters);
         }
 
-        if(defeatedFighters.length == 3){
+        if (defeatedFighters.length == 3) {
             $(".info-pop-up-text").text("Congrats " + fighterObj.name + " you have defeated them all!");
-            $(".info-pop-up-text").css("color","red");
-            $(".ultimate-win").css("display","flex");
-            $(".ultimate-win-text").text( fighterObj.name + " is the supreme winner");
-          
+            $(".info-pop-up-text").css("color", "red");
+            $(".ultimate-win").css("display", "flex");
+            $(".ultimate-win-text").text(fighterObj.name + " is the supreme winner");
+
         }
     }
 
@@ -145,6 +154,6 @@ $("#attack").click(function () {
 
 //______________________ END OF ATTACK CLICK
 
-$("#rules").click(function(){
+$("#rules").click(function () {
     $(".rules-pop-up").toggle();
 })
