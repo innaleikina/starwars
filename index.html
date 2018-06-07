@@ -14,70 +14,104 @@
 
 <body>
     <div class="container main">
-        <h2> Pick a Fighter</h2>
-        <div class="fighters">
-            <div class="fighter-container" id="obi">
-                <p>Obi-Wan</p>
-                <img class="fighter-img" src="./resources/images/obi.jpg">
-                <p id="health-obi" class="health"></p>
-                <p id="attack-obi" class="attack"></p>
+        <div class="buttons container">
+            <button id="reset" class="button-style"> restart </button>
+            <button id="rules" class="button-style"> rules </button>
+        </div>
 
+        <div class="rules-pop-up">
+            <h3> STAR WARS RPG RULES </h3>
+            <ul>
+                <li>
+                    <p> Pick a player out of four available characters. </p>
+                </li>
+                <li>
+                    <p> Pick an enemy out of the three remaining characters. </p>
+                </li>
+                <li>
+                    <p> Press the attack button to fight. On every press your attack power increses. The health of both characters
+                        will decrese by the value of the attack. </p>
+                </li>
+                <li>
+                    <p> If you defeat an enemy, you choose another opponent. If you defeat all opponents, you win the game. If
+                        any of the opponents defeat you, you loose the game. </p>
+                </li>
+            </ul>
+        </div>
+
+
+        <h1 id="game-title"> Stars Wars RPG </h1>
+
+
+        <div class="fighters-all">
+            <h2 id="pick"> PICK A FIGHTER</h2>
+            <div class="fighters">
+                <div class="fighter-container" id="obi">
+                    <p>Obi-Wan Kenobi</p>
+                    <img class="fighter-img" src="./resources/images/obi.jpg">
+                    <p id="health-obi" class="health"></p>
+                    <p id="attack-obi" class="attack"></p>
+
+                </div>
+                <div class="fighter-container" id="luke">
+                    <p>Luke Skywalker</p>
+                    <img class="fighter-img" src="./resources/images/luke.jpg">
+                    <p id="health-luke" class="health"></p>
+                    <p id="attack-luke" class="attack"></p>
+
+                </div>
+                <div class="fighter-container" id="darth-s">
+                    <p>Darth Sidius</p>
+                    <img class="fighter-img" src="./resources/images/sidius.jpg">
+                    <p id="health-darth-s" class="health"></p>
+                    <p id="attack-darth-s" class="attack"></p>
+
+                </div>
+                <div class="fighter-container" id="darth-m">
+                    <p>Darth Maul</p>
+                    <img class="fighter-img" src="./resources/images/maul.jpg">
+                    <p id="health-darth-m" class="health"></p>
+                    <p id="attack-darth-m" class="attack"></p>
+
+                </div>
             </div>
-            <div class="fighter-container" id="luke">
-                <p>Luke Skywalker</p>
-                <img class="fighter-img" src="./resources/images/luke.jpg">
-                <p id="health-luke" class="health" ></p>
-                <p id="attack-luke" class="attack"></p>
+        </div>
 
-            </div>
-            <div class="fighter-container" id="darth-s">
-                <p>Darth Sidius</p>
-                <img class="fighter-img" src="./resources/images/sidius.jpg">
-                <p id="health-darth-s" class="health"></p>
-                <p id="attack-darth-s" class="attack"></p>
 
-            </div>
-            <div class="fighter-container" id="darth-m">
-                <p>Darth Maul</p>
-                <img class="fighter-img" src="./resources/images/maul.jpg">
-                <p id="health-darth-m" class="health"></p>
-                <p id="attack-darth-m" class="attack"></p>
-
+        <div class="info-pop-up">
+            <div class="info-pop-up-text">
             </div>
         </div>
 
+        <div class="ultimate-win">
+                <div class="ultimate-win-text">
+                </div>
+                <button id="resetWin" class="button-style"> restart </button>
+            </div>
 
-        <div class="chosen-fighter container">
-            <h3> Your Fighter </h3>
+        <div class="fight-area-all container">
 
-        </div>
-        <button id="attack"> attack </button>
-
-
-        <div class="enemy container">
-            <h3> Enemies </h3>
-
-        </div>
-        
-
-
-        <div class="fight-section container">
-            <h3> Fight Section</h3>
-            <p id="fighter-damage"></p>
-            <p id="enemy-damage"></p>
-
-        </div>
-
-       
-
-
-        <div class="defender container">
-            <h3>Defender</h3>
-        </div>
+            <div class="chosen-fighter container">
+                <h3> Your Fighter </h3>
+            </div>
 
 
 
-    </div>
+            <div class="fight-section container">
+                <h3> Fight Section</h3>
+                <button id="attack"> attack </button>
+                <p id="fighter-damage"></p>
+                <p id="enemy-damage"></p>
+            </div>
+
+
+
+            <div class="enemy container">
+                <h3> Your Enemy</h3>
+            </div>
+
+   </div>
+ </div>
     <script src="./resources/js/index.js">
     </script>
 

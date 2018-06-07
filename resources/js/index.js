@@ -2,7 +2,7 @@ let fighters = [{
         selector: $("#obi"),
         selectorHealth: $("#health-obi"),
         selectorAttack: $("#attack-obi"),
-        name: "Obi",
+        name: "Obi-Wan Kenobi",
         id: "obi",
         health: 120,
         attack: 12,
@@ -12,7 +12,7 @@ let fighters = [{
         selector: $("#luke"),
         selectorHealth: $("#health-luke"),
         selectorAttack: $("#attack-luke"),
-        name: "Luke",
+        name: "Luke Skywalker",
         id: "luke",
         health: 100,
         attack: 13,
@@ -23,7 +23,7 @@ let fighters = [{
         selector: $("#darth-s"),
         selectorHealth: $("#health-darth-s"),
         selectorAttack: $("#attack-darth-s"),
-        name: "Darth S",
+        name: "Darth Sidious",
         id: "darth-s",
         health: 150,
         attack: 7,
@@ -33,7 +33,7 @@ let fighters = [{
         selector: $("#darth-m"),
         selectorHealth: $("#health-darth-m"),
         selectorAttack: $("#attack-darth-m"),
-        name: "Darth M",
+        name: "Darth Maul",
         id: "darth-m",
         health: 180,
         attack: 15,
@@ -49,22 +49,28 @@ let enemy;
 let fighterObj;
 let enemyObj;
 let fighterHealthNew;
+let defeatedFighters = [];
 
 
 function printStats() {
     for (var i = 0; i < fighters.length; i++) {
-        fighters[i].selectorHealth.text(fighters[i].health);
-        fighters[i].selectorAttack.text(fighters[i].attackNew);
+        fighters[i].selectorHealth.text(  fighters[i].name + "'s"  + " health is " + fighters[i].health);
+        fighters[i].selectorAttack.text(fighters[i].name + "'s"  + " attack is " +  fighters[i].attackNew);
     }
 }
 printStats();
+
+
 
 
 //puts chosen fighters into correct divs
 $(".fighter-container").click(function () {
     // console.log(this);
     if (!fighterChosen) {
-        $(this).appendTo(".chosen-fighter");
+        // $(".fighter-container").appendTo(".enemy");
+         $(this).appendTo(".chosen-fighter");
+         $(this).unbind("click");
+         $("#pick").text("PICK AN ENEMY");
         //makes choosing a new fighter impossible, because the fighterChosen is now true
         fighterChosen = true;
         fighter = $(".chosen-fighter").children(".fighter-container");
@@ -109,9 +115,24 @@ $("#attack").click(function () {
         }
 
         if(enemyObj.health <= 0){
-            console.log("enemy is dead!");
+            $(".info-pop-up-text").text(enemyObj.name + " is dead! Pick your next enemy!");
+            $(".info-pop-up").css("display", "flex");
+            setTimeout(function(){
+                $(".info-pop-up").css("display", "none");
+            }, 2500);
+         
             $(".enemy").empty();
             enemyChosen = false;
+            defeatedFighters.push(enemyObj);
+            console.log(defeatedFighters);
+        }
+
+        if(defeatedFighters.length == 3){
+            $(".info-pop-up-text").text("Congrats " + fighterObj.name + " you have defeated them all!");
+            $(".info-pop-up-text").css("color","red");
+            $(".ultimate-win").css("display","flex");
+            $(".ultimate-win-text").text( fighterObj.name + " is the supreme winner");
+          
         }
     }
 
@@ -123,3 +144,7 @@ $("#attack").click(function () {
 });
 
 //______________________ END OF ATTACK CLICK
+
+$("#rules").click(function(){
+    $(".rules-pop-up").toggle();
+})

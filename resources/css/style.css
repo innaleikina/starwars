@@ -1,45 +1,219 @@
-.container{
-    display:flex;
-    flex-direction:column;
+html {
+    font-family: "Helvetica", sans-serif;
+    font-size: 12px;
+}
+
+.container {
+    display: flex;
     /* border:1px red solid; */
 }
 
+.main {
+    flex-direction: column;
+}
 
-.fighters{
-    display:flex;
-    flex-direction:row;
+.buttons {
+    /* border:1px red solid; */
+    width: 150px;
+    margin-left: auto;
+}
+
+.button-style {
+    height: 40px;
+    width: 50px;
+    /* background-color:gray; */
+    border-color: gray;
+    color: gray;
+    border-radius: 10px;
+    margin-right: 20px;
+    /* margin-left:auto; */
+    margin-top: 20px;
+    letter-spacing: 1.2px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#rules {
+    border: 1px red solid;
+    background-color: red;
+    color: white;
+    transition:.4s all linear;
+}
+
+#rules:hover {
+    background-color: white;
+    color: red;
+}
+
+button:focus {
+    outline: 0;
+}
+
+.rules-pop-up {
+    border: 1px black solid;
+    width: 300px;
+    position: fixed;
+    left: 70%;
+    background-color: white;
+    top: 70px;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    display: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+h3 {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+#game-title {
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+    letter-spacing: 5px;
+    color: gray;
+    font-size: 40px;
+    border-bottom: 1px gray solid;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+#pick {
+    margin-left: 5px;
+    color: white;
+}
+
+.fighters-all {
+    /* border:1px black solid; */
+    padding: 10px;
+    padding-bottom: 50px;
+    background-color: gray;
+    text-align: center;
+}
+
+.fighters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     /* border:1px blue solid; */
 }
 
-.fighter-img{
-    width:120px;
-    height:100px;
+.fighter-img {
+    width: 120px;
+    height: 100px;
 }
 
-.fighter-container{
-    border:1px green solid;
-    margin-right:5px;
+.fighter-container {
+    /* border: 1px green solid; */
+    margin-right: 5px;
     margin-left: 5px;
-    text-align:center;
-    width:50%;
-    background-color:white;
+    text-align: center;
+    width: 50%;
+    background-color: white;
+    width: 220px;
+    height: 220px;
+    padding-bottom: 20px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
+    border: 1px gray solid;
 }
 
-
-.picked{
-    border:1px green solid;
+.health {
+    /* font-weight: bold; */
+    line-height: 1.4rem;
+    color: white;
+    letter-spacing: 1px;
+    background-color: black;
+    padding: 5px;
 }
 
-.health{
-    font-weight:bold;
-    color:skyblue;
-    background-color:black;
+.fight-area-all {
+    justify-content: space-around;
+    margin-bottom: 100px;
+    margin-top: 50px;
+}
+
+#attack {
+    width: 100px;
+}
+
+.chosen-fighter,
+.enemy {
+    flex-direction: column;
 }
 
 #attack{
-    width:100px;
+    background-color:red;
+    width:120px;
+    height:70px;
+    border-radius:30px;
+    box-shadow:2px 2px 2px rgba(0,0,0,0.4);
 }
 
-.chosen-fighter{
-    background-color:gray;
+.fight-section {
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.info-pop-up {
+    color: white;
+    width: 80vw;
+    height: 80vh;
+    background-color: black;
+    z-index: 1;
+    position: fixed;
+    margin-top: 40px;
+    left: 10%;
+    /* display:flex; */
+    align-content: center;
+    align-items: center;
+    display: none;
+    font-size: 28px;
+    text-align: center;
+}
+
+.info-pop-up-text {
+    margin-left: 40px;
+}
+
+.ultimate-win {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    /* display:flex; */
+    display: none;
+    position: fixed;
+    color: white;
+    z-index: 2;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content:center;
+    /* justify-items: center; */
+}
+
+.ultimate-win-text {
+    font-size: 40px;
+}
+
+#resetWin{
+    text-align:center;
+    width:100px;
+    height:50px;
+    /* border:1px red solid; */
+    color:red;
+    background-color:white;
+    font-size:15px;
+    transition:.4s all linear;
+    /* box-shadow:2px 2px 2px rgba(255,255,255,0.5) */
+}
+
+#resetWin:hover{
+    background-color:red;
+    color:white;
 }
