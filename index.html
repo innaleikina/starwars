@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./resources/css/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-        <script src="https://use.fontawesome.com/f7ec0209f5.js"></script>
+    <script src="https://use.fontawesome.com/f7ec0209f5.js"></script>
     <title>Star Wars RPG</title>
 </head>
 
@@ -21,7 +21,8 @@
         </div>
 
         <div class="rules-pop-up">
-            <h3> STAR WARS RPG RULES </h3>
+            <p id="x"> X </p>
+            <h3 id="rules-title"> STAR WARS RPG RULES </h3>
             <ul>
                 <li>
                     <p> Pick a player out of four available characters. </p>
@@ -47,34 +48,35 @@
         <div class="fighters-all">
             <h2 id="pick"> PICK A FIGHTER</h2>
             <div class="fighters">
-                <div class="fighter-container" id="obi">
-                    <p>Obi-Wan Kenobi</p>
+                <p> fighters </p>
+                <!-- <div class="fighter-container" id="obi">
+                    <p class="name-style">Obi-Wan Kenobi</p>
                     <img class="fighter-img" src="./resources/images/obi.jpg">
                     <p id="health-obi" class="health"></p>
                     <p id="attack-obi" class="attack"></p>
 
                 </div>
                 <div class="fighter-container" id="luke">
-                    <p>Luke Skywalker</p>
+                    <p class="name-style">Luke Skywalker</p>
                     <img class="fighter-img" src="./resources/images/luke.jpg">
                     <p id="health-luke" class="health"></p>
                     <p id="attack-luke" class="attack"></p>
 
                 </div>
                 <div class="fighter-container" id="darth-s">
-                    <p>Darth Sidius</p>
+                    <p class="name-style">Darth Sidius</p>
                     <img class="fighter-img" src="./resources/images/sidius.jpg">
                     <p id="health-darth-s" class="health"></p>
                     <p id="attack-darth-s" class="attack"></p>
 
                 </div>
                 <div class="fighter-container" id="darth-m">
-                    <p>Darth Maul</p>
+                    <p class="name-style">Darth Maul</p>
                     <img class="fighter-img" src="./resources/images/maul.jpg">
                     <p id="health-darth-m" class="health"></p>
                     <p id="attack-darth-m" class="attack"></p>
 
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -82,12 +84,13 @@
         <div class="info-pop-up">
             <div class="info-pop-up-text">
             </div>
+            <button id="resetLoose" class="resetWin button-style"> restart </button>
         </div>
 
         <div class="ultimate-win">
             <div class="ultimate-win-text">
             </div>
-            <button id="resetWin" class="button-style"> restart </button>
+            <button class="resetWin" class="button-style"> restart </button>
         </div>
 
         <div class="fight-area-all container">
@@ -111,17 +114,22 @@
 
             <div class="enemy container">
                 <h3> Your Enemy</h3>
+                <div class="enemyDisplay">
+                    
+                </div>
             </div>
 
         </div>
     </div>
 
     <footer class="container">
-       <p id="madeBy"> made by Inna Leikina</p>
-      <a href="https://github.com/innaleikina" target="_blank"> <i class="fa fa-github-square fa-2x" aria-hidden="true"></i></a>
+        <p id="madeBy"> made by Inna Leikina</p>
+        <a href="https://github.com/innaleikina" target="_blank">
+            <i class="fa fa-github-square fa-2x" aria-hidden="true"></i>
+        </a>
     </footer>
-    
-    
+
+
     <script src="./resources/js/index.js">
     </script>
 

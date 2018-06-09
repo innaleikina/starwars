@@ -16,17 +16,15 @@ html {
     /* border:1px red solid; */
     width: 150px;
     margin-left: auto;
+    margin-right: 50px;
+    margin-bottom: 20px;
 }
 
 .button-style {
-    height: 40px;
-    width: 50px;
-    /* background-color:gray; */
     border-color: gray;
     color: gray;
     border-radius: 10px;
     margin-right: 20px;
-    /* margin-left:auto; */
     margin-top: 20px;
     letter-spacing: 1.2px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
@@ -34,14 +32,24 @@ html {
 
 #reset {
     text-align: center;
-    padding-right: 50px;
+    padding: 20px;
+    transition: .4s all linear;
 }
+
+#reset:hover {
+    background-color: gray;
+    color: white;
+}
+
+/* _________________________________RULES_______________ */
 
 #rules {
     border: 1px red solid;
     background-color: red;
     color: white;
     transition: .4s all linear;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 #rules:hover {
@@ -57,6 +65,26 @@ button:hover {
     cursor: pointer;
 }
 
+#x {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    position: fixed;
+    /* left:70%; */
+    margin-left: 240px;
+    margin-top: 5px;
+    margin-bottom: 40px;
+    padding:5px 10px;
+    border: 1px red solid;
+    transition:.4s all linear;
+}
+
+#x:hover{
+    cursor:pointer;
+    color:black;
+    border:1px black solid;
+}
+
 .rules-pop-up {
     border: 1px black solid;
     width: 300px;
@@ -64,8 +92,8 @@ button:hover {
     left: 70%;
     background-color: white;
     top: 70px;
-    padding-top: 10px;
-    padding-right: 20px;
+    padding-top: 5px;
+    padding-right: 10px;
     padding-bottom: 20px;
     display: none;
 }
@@ -73,6 +101,12 @@ button:hover {
 ul {
     list-style-type: none;
 }
+
+#rules-title{
+    margin-top:60px;
+}
+
+/* __________________________ */
 
 h3 {
     text-align: center;
@@ -103,6 +137,13 @@ h3 {
 
 h3 {
     font-weight: lighter;
+}
+
+/* __________________FIGHTERS CARDS_______________ */
+
+.name-style {
+    font-weight: bold;
+    overflow: 0ex;
 }
 
 .fighters-all {
@@ -165,9 +206,18 @@ h3 {
     height: 70px;
     border-radius: 30px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
-    color: white;
+    color: rgba(255, 255, 255, .8);
     letter-spacing: 2.5px;
     text-transform: uppercase;
+}
+
+#attack:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+#attack:active {
+    box-shadow: none;
+    top: 2px;
 }
 
 .chosen-fighter,
@@ -223,7 +273,7 @@ h3 {
     font-size: 40px;
 }
 
-#resetWin {
+.resetWin {
     text-align: center;
     width: 100px;
     height: 50px;
@@ -232,12 +282,22 @@ h3 {
     background-color: white;
     font-size: 15px;
     transition: .4s all linear;
+    border-radius: 10px;
+    margin-top: 20px;
     /* box-shadow:2px 2px 2px rgba(255,255,255,0.5) */
 }
 
-#resetWin:hover {
+.resetWin:hover {
     background-color: red;
     color: white;
+}
+
+#resetLoose {
+    display: none;
+    margin-left: 40px;
+    width: 70px;
+    height: 40px;
+    margin-bottom: 18px;
 }
 
 .attack-info-all {
