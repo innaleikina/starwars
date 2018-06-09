@@ -48,8 +48,9 @@ $(document).ready(function () {
 
 
     for (var i = 0; i < fighters.length; i++) {
-        console.log(fighters[i].name);
+
         var fighterContainer = $("<div>");
+        console.log(fighterContainer);
         fighterContainer.addClass("fighter-container");
         fighterContainer.text(fighters[i].name);
         $("fighters").append(fighterContainer);
