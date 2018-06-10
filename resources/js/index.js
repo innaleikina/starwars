@@ -1,37 +1,45 @@
 $(document).ready(function () {
 
     let fighters = [{
-            img: "url('resources/images/obi.jpg')",
+            img: "./resources/images/obi.jpg",
             name: "Obi-Wan Kenobi",
             id: "obi",
+            idHealth: "health-obi",
+            idAttack: "attack-obi",
             health: 120,
             attack: 5,
-            attackNew: 12
+            attackNew: 5
         },
         {
-            img: "url('resources/images/luke.jpg')",
+            img: "./resources/images/luke.jpg",
             name: "Luke Skywalker",
             id: "luke",
+            idHealth: "health-luke",
+            idAttack: "attack-luke",
             health: 100,
-            attack: 4,
-            attackNew: 13
+            attack: 10,
+            attackNew: 10
 
         },
         {
-            img: "url('resources/images/sidius.jpg')",
+            img: "./resources/images/sidius.jpg",
             name: "Darth Sidious",
             id: "darth-s",
+            idHealth: "health-darth-s",
+            idAttack: "attack-darth-s",
             health: 150,
             attack: 7,
             attackNew: 7
         },
         {
-            img: "url('resources/images/maul.jpg')",
+            img: "./resources/images/maul.jpg",
             name: "Darth Maul",
             id: "darth-m",
+            idHealth: "health-darth-m",
+            idAttack: "attack-darth-m",
             health: 180,
-            attack: 3,
-            attackNew: 15
+            attack: 9,
+            attackNew: 9
         }
     ]
 
@@ -44,45 +52,68 @@ $(document).ready(function () {
     let enemyObj;
     let fighterHealthNew;
     let defeatedFighters = [];
+    var fighterHealth;
 
 
+    function setUp() {
+        for (var i = 0; i < fighters.length; i++) {
 
-    for (var i = 0; i < fighters.length; i++) {
+            var fighterContainer = $("<div>");
+            fighterContainer.addClass("fighter-container");
+            fighterContainer.attr("id", fighters[i].id)
+            $(".fighters").append(fighterContainer);
 
-        var fighterContainer = $("<div>");
-        console.log(fighterContainer);
-        fighterContainer.addClass("fighter-container");
-        fighterContainer.text(fighters[i].name);
-        $("fighters").append(fighterContainer);
+            var fighterName = $("<p>");
+            fighterName.addClass("name-style");
 
+            fighterName.text(fighters[i].name);
+            fighterContainer.append(fighterName);
+
+            var fighterImg = $("<img>");
+            fighterImg.addClass("fighter-img");
+            fighterImg.attr("src", fighters[i].img);
+            fighterContainer.append(fighterImg);
+
+
+            fighterHealth = $("<p>");
+            fighterHealth.addClass("health");
+            fighterHealth.attr("id", fighters[i].idHealth);
+            // fighterHealth.text(fighters[i].health);
+            fighterContainer.append(fighterHealth);
+
+            var fighterAttack = $("<p>");
+            fighterAttack.addClass("attack");
+            fighterAttack.attr("id", fighters[i].idAttack);
+            // fighterAttack.text(fighters[i].attack);
+            fighterContainer.append(fighterAttack);
+
+        }
+       printStats();
     }
 
-    // function printStats() {
-    //     for (var i = 0; i < fighters.length; i++) {
-    //         fighters[i].selectorHealth.text(fighters[i].name + "'s" + " health is " + fighters[i].health);
-    //         fighters[i].selectorAttack.text(fighters[i].name + "'s" + " attack is " + fighters[i].attackNew);
-    //     }
-    // }
+    setUp();
+
+    // $("#health-obi").text(fighters[0].name + "'s" + " health is " + fighters[0].health);
+
+    function printStats() {
+        for (var i = 0; i < fighters.length; i++) {
+            // console.log(fighters[i].selectorHealth);
+            $("#" + fighters[i].idHealth).text(fighters[i].name + "'s" + " health is " + fighters[i].health);
+            $("#" + fighters[i].idAttack).text(fighters[i].name + "'s" + " attack is " + fighters[i].attackNew);
+        }
+    }
     // printStats();
 
-    function reset() {
-        $(".fighter-container").appendTo(".fighters");
 
-        $(".attack-info-all").empty();
-        $(".attack-info-all").css("border", "none");
-        fighterChosen = false;
-        enemyChosen = false;
-        $(".fighter-container").hover(function () {
-            $(".fighter-container").css("cursor", "pointer");
-        });
-
-    }
 
     $("#reset").click(function () {
-        reset();
+
+        $(".fighters").empty();
+        setUp();
     });
 
     $(".resetWin").click(function () {
+
         $(".ultimate-win").css("display", "none");
         reset();
 
@@ -103,6 +134,7 @@ $(document).ready(function () {
             //makes choosing a new fighter impossible, because the fighterChosen is now true
             fighterChosen = true;
             fighter = $(".chosen-fighter").children(".fighter-container");
+            console.log("this is the fighter" + fighter);
         } else if (!enemyChosen) {
             $(this).appendTo(".enemyDisplay");
             $(this).hover(function () {
@@ -143,6 +175,10 @@ $(document).ready(function () {
             enemyObj.health = enemyObj.health - fighterObj.attackNew;
             fighterObj.attackNew = fighterObj.attackNew + fighterObj.attack;
 
+
+
+
+
             if (fighterObj.health <= 0) {
                 console.log("you lost!")
                 $(".info-pop-up-text").text(enemyObj.name + " killed you!");
@@ -166,6 +202,7 @@ $(document).ready(function () {
             if (defeatedFighters.length == 3) {
                 $(".info-pop-up-text").css("color", "red");
                 $(".ultimate-win").css("display", "flex");
+                $(".info-pop-up").css("display", "none");
                 $(".ultimate-win-text").text(" You are the supreme winner");
 
             }
@@ -175,6 +212,7 @@ $(document).ready(function () {
 
         subtractHealth();
         printStats();
+
 
     });
 
