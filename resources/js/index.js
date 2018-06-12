@@ -93,15 +93,8 @@ $(document).ready(function () {
             $("#" + fighters[i].idHealth).text(fighters[i].name + "'s" + " health is " + fighters[i].healthConst);
             $("#" + fighters[i].idAttack).text(fighters[i].name + "'s" + " attack is " + fighters[i].attack);
 
-            //  fighters[i].attackNew = Number(fighters[i].atack);
-            //  fighters[i].health = Number(fighters[i].healthConst);
-        }
-
-        // printStats();
-
-        for (var i = 0; i < fighters.length; i++) {
-            $("#" + fighters[i].idHealth).text(fighters[i].name + "'s" + " health is " + fighters[i].healthConst);
-            $("#" + fighters[i].idAttack).text(fighters[i].name + "'s" + " attack is " + fighters[i].attack);
+             fighters[i].attackNew = Number(fighters[i].attack);
+              fighters[i].health = Number(fighters[i].healthConst);
         }
 
         fighterChosen = false;
@@ -173,7 +166,7 @@ $(document).ready(function () {
 
 
     //_________________ ON ATTACK CLICK_____________
-    $(document).on('click', '#attack',function () {
+    $(document).on('click', '#attack', function () {
         if (!fighterChosen || !enemyChosen) {
             alert("please choose your characters");
         }
