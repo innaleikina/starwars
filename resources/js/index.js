@@ -19,8 +19,8 @@ $(document).ready(function () {
             idAttack: "attack-luke",
             health: 100,
             healthConst: 100,
-            attack: 10,
-            attackNew: 10
+            attack: 12,
+            attackNew: 12
 
         },
         {
@@ -93,13 +93,15 @@ $(document).ready(function () {
             $("#" + fighters[i].idHealth).text(fighters[i].name + "'s" + " health is " + fighters[i].healthConst);
             $("#" + fighters[i].idAttack).text(fighters[i].name + "'s" + " attack is " + fighters[i].attack);
 
-             fighters[i].attackNew = Number(fighters[i].attack);
-              fighters[i].health = Number(fighters[i].healthConst);
+            fighters[i].attackNew = Number(fighters[i].attack);
+            fighters[i].health = Number(fighters[i].healthConst);
         }
 
         fighterChosen = false;
         enemyChosen = false;
         defeatedFighters = [];
+        $(".info-pop-up").css("display", "none");
+        $("#resetLoose").css("display", "none");
 
 
     }
@@ -139,10 +141,9 @@ $(document).ready(function () {
 
     //puts chosen fighters into correct divs
     $(document).on('click', '.fighter-container', function () {
-        console.log("fighter was clicked!");
-        console.log(fighterChosen);
+        // console.log("fighter was clicked!");
+        // console.log(fighterChosen);
         if (!fighterChosen) {
-            // $(".fighter-container").appendTo(".enemy");
             $(this).appendTo(".fighter-display");
             $(this).hover(function () {
                 $(this).css("cursor", "auto");
@@ -171,8 +172,7 @@ $(document).ready(function () {
     $(document).on('click', '#attack', function () {
         if (!fighterChosen || !enemyChosen) {
             alert("please choose your characters");
-        }
-
+        } else {
         //save chosen fighters inside a variable
         for (var i = 0; i < fighters.length; i++) {
             if ((fighter.attr("id") == fighters[i].id)) {
@@ -185,6 +185,7 @@ $(document).ready(function () {
         }
 
         //fight container info populates dynamically
+
         $("#fighter-damage").text(fighterObj.name + " damaged " + enemyObj.name + " for " + fighterObj.attackNew + " points!");
         $("#enemy-damage").text(enemyObj.name + " damaged " + fighterObj.name + " for " + enemyObj.attackNew + " points!");
         $(".attack-info-all").css("border", "1px black solid");
@@ -195,7 +196,7 @@ $(document).ready(function () {
             enemyObj.health = enemyObj.health - fighterObj.attackNew;
             fighterObj.attackNew = fighterObj.attackNew + fighterObj.attack;
 
-
+        
 
 
 
@@ -233,7 +234,7 @@ $(document).ready(function () {
 
         subtractHealth();
         printStats();
-
+    }
 
     });
 
