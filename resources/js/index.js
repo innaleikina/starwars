@@ -99,6 +99,8 @@ $(document).ready(function () {
 
         fighterChosen = false;
         enemyChosen = false;
+        defeatedFighters = [];
+
 
     }
 
