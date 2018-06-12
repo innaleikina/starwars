@@ -198,6 +198,7 @@ h3 {
     justify-content: space-around;
     margin-bottom: 100px;
     margin-top: 50px;
+    flex-direction:row;
 }
 
 #attack {
@@ -276,7 +277,7 @@ h3 {
 .resetWin {
     text-align: center;
     width: 100px;
-    height: 50px;
+    /* height: 50px; */
     /* border:1px red solid; */
     color: red;
     background-color: white;

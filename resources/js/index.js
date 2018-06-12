@@ -7,6 +7,7 @@ $(document).ready(function () {
             idHealth: "health-obi",
             idAttack: "attack-obi",
             health: 120,
+            healthConst: 120,
             attack: 5,
             attackNew: 5
         },
@@ -17,6 +18,7 @@ $(document).ready(function () {
             idHealth: "health-luke",
             idAttack: "attack-luke",
             health: 100,
+            healthConst: 100,
             attack: 10,
             attackNew: 10
 
@@ -28,6 +30,7 @@ $(document).ready(function () {
             idHealth: "health-darth-s",
             idAttack: "attack-darth-s",
             health: 150,
+            healthConst: 150,
             attack: 7,
             attackNew: 7
         },
@@ -38,6 +41,7 @@ $(document).ready(function () {
             idHealth: "health-darth-m",
             idAttack: "attack-darth-m",
             health: 180,
+            healthConst: 180,
             attack: 9,
             attackNew: 9
         }
@@ -50,9 +54,8 @@ $(document).ready(function () {
     let enemy;
     let fighterObj;
     let enemyObj;
-    let fighterHealthNew;
     let defeatedFighters = [];
-    var fighterHealth;
+
 
 
     function setUp() {
@@ -87,8 +90,23 @@ $(document).ready(function () {
             // fighterAttack.text(fighters[i].attack);
             fighterContainer.append(fighterAttack);
 
+            $("#" + fighters[i].idHealth).text(fighters[i].name + "'s" + " health is " + fighters[i].healthConst);
+            $("#" + fighters[i].idAttack).text(fighters[i].name + "'s" + " attack is " + fighters[i].attack);
+
+            //  fighters[i].attackNew = Number(fighters[i].atack);
+            //  fighters[i].health = Number(fighters[i].healthConst);
         }
-       printStats();
+
+        // printStats();
+
+        for (var i = 0; i < fighters.length; i++) {
+            $("#" + fighters[i].idHealth).text(fighters[i].name + "'s" + " health is " + fighters[i].healthConst);
+            $("#" + fighters[i].idAttack).text(fighters[i].name + "'s" + " attack is " + fighters[i].attack);
+        }
+
+        fighterChosen = false;
+        enemyChosen = false;
+
     }
 
     setUp();
@@ -106,49 +124,56 @@ $(document).ready(function () {
 
 
 
-    $("#reset").click(function () {
+    // $("#reset").click(function () {
 
-        $(".fighters").empty();
-        setUp();
-    });
+    //     $(".fighter-display").remove();
+    //     $(".enemy-display").remove();
+    //     $(".fighters").empty();
+    //     setUp();
+    // });
 
     $(".resetWin").click(function () {
 
+        $(".fighter-display").empty();
+        $(".enemy-display").empty();
+        $(".fighters").empty();
         $(".ultimate-win").css("display", "none");
-        reset();
-
-
+        setUp();
     })
 
 
     //puts chosen fighters into correct divs
-    $(".fighter-container").click(function () {
-        // console.log(this);
+    $(document).on('click', '.fighter-container', function () {
+        console.log("fighter was clicked!");
+        console.log(fighterChosen);
         if (!fighterChosen) {
             // $(".fighter-container").appendTo(".enemy");
-            $(this).appendTo(".chosen-fighter");
+            $(this).appendTo(".fighter-display");
             $(this).hover(function () {
                 $(this).css("cursor", "auto");
             });
             $("#pick").text("PICK AN ENEMY");
             //makes choosing a new fighter impossible, because the fighterChosen is now true
             fighterChosen = true;
-            fighter = $(".chosen-fighter").children(".fighter-container");
+            // console.log(fighterChosen)
+
+            fighter = $(".fighter-display").children(".fighter-container");
             console.log("this is the fighter" + fighter);
         } else if (!enemyChosen) {
-            $(this).appendTo(".enemyDisplay");
+            $(this).appendTo(".enemy-display");
             $(this).hover(function () {
                 $(this).css("cursor", "auto");
             });
             //makes choosing a new fighter impossible, because the enemyChosen is now true
             enemyChosen = true;
-            enemy = $(".enemyDisplay").children(".fighter-container");
+            // console.log(enemyChosen)
+            enemy = $(".enemy-display").children(".fighter-container");
         }
     });
 
 
     //_________________ ON ATTACK CLICK_____________
-    $("#attack").click(function () {
+    $(document).on('click', '#attack',function () {
         if (!fighterChosen || !enemyChosen) {
             alert("please choose your characters");
         }
@@ -187,6 +212,7 @@ $(document).ready(function () {
             }
 
             if (enemyObj.health <= 0) {
+                $(".enemy-display").empty();
                 $(".info-pop-up-text").text(enemyObj.name + " is dead! Pick your next enemy!");
                 $(".info-pop-up").css("display", "flex");
                 setTimeout(function () {
