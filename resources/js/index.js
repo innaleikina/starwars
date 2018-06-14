@@ -8,8 +8,8 @@ $(document).ready(function () {
             idAttack: "attack-obi",
             health: 120,
             healthConst: 120,
-            attack: 5,
-            attackNew: 5
+            attack: 15,
+            attackNew: 15
         },
         {
             img: "./resources/images/luke.jpg",
@@ -19,8 +19,8 @@ $(document).ready(function () {
             idAttack: "attack-luke",
             health: 100,
             healthConst: 100,
-            attack: 12,
-            attackNew: 12
+            attack: 2,
+            attackNew: 2
 
         },
         {
@@ -102,11 +102,15 @@ $(document).ready(function () {
         defeatedFighters = [];
         $(".info-pop-up").css("display", "none");
         $("#resetLoose").css("display", "none");
+        $(".info-pop-up-text").css("color", "white");
+        
+        
 
 
     }
 
     setUp();
+  
 
     // $("#health-obi").text(fighters[0].name + "'s" + " health is " + fighters[0].health);
 
@@ -117,17 +121,6 @@ $(document).ready(function () {
             $("#" + fighters[i].idAttack).text(fighters[i].name + "'s" + " attack is " + fighters[i].attackNew);
         }
     }
-    // printStats();
-
-
-
-    // $("#reset").click(function () {
-
-    //     $(".fighter-display").remove();
-    //     $(".enemy-display").remove();
-    //     $(".fighters").empty();
-    //     setUp();
-    // });
 
     $(".resetWin").click(function () {
 
@@ -135,14 +128,15 @@ $(document).ready(function () {
         $(".enemy-display").empty();
         $(".fighters").empty();
         $(".ultimate-win").css("display", "none");
+        $(".attack-info-all").hide();
+        $(".attack-info-all").css("border", "none")
         setUp();
     })
 
 
     //puts chosen fighters into correct divs
     $(document).on('click', '.fighter-container', function () {
-        // console.log("fighter was clicked!");
-        // console.log(fighterChosen);
+      
         if (!fighterChosen) {
             $(this).appendTo(".fighter-display");
             $(this).hover(function () {
@@ -154,7 +148,7 @@ $(document).ready(function () {
             // console.log(fighterChosen)
 
             fighter = $(".fighter-display").children(".fighter-container");
-            console.log("this is the fighter" + fighter);
+            //console.log("this is the fighter" + fighter);
         } else if (!enemyChosen) {
             $(this).appendTo(".enemy-display");
             $(this).hover(function () {
@@ -185,10 +179,11 @@ $(document).ready(function () {
         }
 
         //fight container info populates dynamically
-
-        $("#fighter-damage").text(fighterObj.name + " damaged " + enemyObj.name + " for " + fighterObj.attackNew + " points!");
-        $("#enemy-damage").text(enemyObj.name + " damaged " + fighterObj.name + " for " + enemyObj.attackNew + " points!");
+        function printFightInfo(){
+        $(".fighter-damage").text(fighterObj.name + " damaged " + enemyObj.name + " for " + fighterObj.attackNew + " points!");
+        $(".enemy-damage").text(enemyObj.name + " damaged " + fighterObj.name + " for " + enemyObj.attackNew + " points!");
         $(".attack-info-all").css("border", "1px black solid");
+        }
 
         //all the health related functions
         function subtractHealth() {
@@ -201,10 +196,11 @@ $(document).ready(function () {
 
 
             if (fighterObj.health <= 0) {
-                console.log("you lost!")
+                //console.log("you lost!")
                 $(".info-pop-up-text").text(enemyObj.name + " killed you!");
                 $("#resetLoose").css("display", "block");
                 $(".info-pop-up").css("display", "flex");
+          
             }
 
             if (enemyObj.health <= 0) {
@@ -218,7 +214,7 @@ $(document).ready(function () {
                 $(".enemyDisplay").empty();
                 enemyChosen = false;
                 defeatedFighters.push(enemyObj);
-                console.log(defeatedFighters);
+                //console.log(defeatedFighters);
             }
 
             if (defeatedFighters.length == 3) {
@@ -231,9 +227,11 @@ $(document).ready(function () {
         }
 
 
-
+        $(".attack-info-all").show();
+        printFightInfo();
         subtractHealth();
         printStats();
+      
     }
 
     });
