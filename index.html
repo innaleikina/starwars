@@ -77,9 +77,9 @@
 
 
             <div class="fight-section container">
-                <h3> Fight Section</h3>
-                <button id="attack"> attack </button>
-                <div class="attack-info-all container">
+                <h3 id="fight-section-desktop-title"> Fight Section</h3>
+                <button class="attack-btn" id="attack-btn-desktop"> attack </button>
+                <div class="attack-info-all container" id="attack-desktop">
                     <p id="fighter-damage" class="fighter-damage"></p>
                     <p id="enemy-damage" class="enemy-damage"></p>
                 </div>
@@ -97,9 +97,13 @@
 
 
         </div>
+
+        <button class="attack-btn" id="attack-btn-mobile"> attack </button>
         <div class="attack-info-all container" id="attack-mobile">
-            <p id="fighter-damage" class="fighter-damage" ></p>
-            <p id="enemy-damage" class="enemy-damage"></p>
+
+            <h3 id="fight-section-mobile-title"> Fight Section</h3>
+            <p class="fighter-damage"></p>
+            <p class="enemy-damage"></p>
         </div>
     </div>
 

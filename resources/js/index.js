@@ -163,7 +163,7 @@ $(document).ready(function () {
 
 
     //_________________ ON ATTACK CLICK_____________
-    $(document).on('click', '#attack', function () {
+    $(document).on('click', '.attack-btn', function () {
         if (!fighterChosen || !enemyChosen) {
             alert("please choose your characters");
         } else {
@@ -176,6 +176,18 @@ $(document).ready(function () {
                 enemyObj = fighters[i];
                 // console.log(enemyObj);
             }
+
+            // if ($(window).width() < 690) {
+            //     $("#attack-desktop").hide();
+            //     $("#attack-mobile").show();
+   
+            //  }
+            //  else if ($(window).width() > 691) {
+            //     $("#attack-mobile").hide();
+            //     $("#attack-desktop").show();
+               
+            //  }
+             
         }
 
         //fight container info populates dynamically

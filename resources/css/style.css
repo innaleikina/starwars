@@ -225,7 +225,7 @@ h3 {
     border: 1px gray solid;
 }
 
-@media only screen and  (max-width:727px) {
+@media only screen and (max-width:727px) {
     .fighter-container {
         width: 150px;
         height: 200px;
@@ -261,7 +261,7 @@ h3 {
     flex-direction: row;
 }
 
-#attack {
+.attack-btn {
     background-color: red;
     width: 120px;
     height: 70px;
@@ -273,18 +273,18 @@ h3 {
 }
 
 @media only screen and (max-width:480px) {
-    #attack {
+    .attack-btn {
         width: 80px;
         height: 40px;
-        font-size:11px;
+        font-size: 11px;
     }
 }
 
-#attack:hover {
+.attack-btn:hover {
     color: rgba(255, 255, 255, 1);
 }
 
-#attack:active {
+.attack-btn:active {
     box-shadow: none;
     top: 2px;
 }
@@ -301,17 +301,55 @@ h3 {
     align-items: center;
 }
 
+#attack-mobile {
+    width: auto;
+    margin: 0 auto;
+    display: none;
+    margin-top: -40px;
+    margin-bottom: 20px;
+}
 
-@media only screen and (max-width:695px) {
-    .attack-info-all {
-        margin-top: 900px;
+@media only screen and (max-width:690px) {
+    #attack-mobile {
+        display: block;
+    }
+    #attack-desktop {
+        display: none !important;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
+    #fight-section-desktop-title {
+        display: none;
+    }
+    #attack-btn-desktop {
+        display: none;
+    }
+    #attack-btn-mobile {
+        margin: 0 auto;
+        display: block;
+        margin-bottom: 90px;
+    }
+    .fight-area-all {
+        margin-bottom: 20px;
     }
 }
 
-#attack-mobile{
-    widows: 380px;
-    margin:0 auto;
-    display:none;
+@media only screen and (min-width:689px) {
+    #attack-mobile {
+        display: none !important;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        /* text-align:center; */
+    }
+    #attack-desktop {
+        display: block;
+    }
+    #attack-btn-mobile {
+        display: none;
+    }
 }
 
 /* ______________________INFO__________________________________________ */
