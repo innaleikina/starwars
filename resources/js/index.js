@@ -8,8 +8,8 @@ $(document).ready(function () {
             idAttack: "attack-obi",
             health: 120,
             healthConst: 120,
-            attack: 15,
-            attackNew: 15
+            attack: 8,
+            attackNew: 8
         },
         {
             img: "./resources/images/luke.jpg",
@@ -19,8 +19,8 @@ $(document).ready(function () {
             idAttack: "attack-luke",
             health: 100,
             healthConst: 100,
-            attack: 2,
-            attackNew: 2
+            attack: 5,
+            attackNew: 5
 
         },
         {
@@ -31,8 +31,8 @@ $(document).ready(function () {
             idAttack: "attack-darth-s",
             health: 150,
             healthConst: 150,
-            attack: 7,
-            attackNew: 7
+            attack: 20,
+            attackNew: 20
         },
         {
             img: "./resources/images/maul.jpg",
@@ -42,8 +42,8 @@ $(document).ready(function () {
             idAttack: "attack-darth-m",
             health: 180,
             healthConst: 180,
-            attack: 9,
-            attackNew: 9
+            attack: 25,
+            attackNew: 25
         }
     ]
 
