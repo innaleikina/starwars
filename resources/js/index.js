@@ -81,13 +81,11 @@ $(document).ready(function () {
             fighterHealth = $("<p>");
             fighterHealth.addClass("health");
             fighterHealth.attr("id", fighters[i].idHealth);
-            // fighterHealth.text(fighters[i].health);
             fighterContainer.append(fighterHealth);
 
             var fighterAttack = $("<p>");
             fighterAttack.addClass("attack");
             fighterAttack.attr("id", fighters[i].idAttack);
-            // fighterAttack.text(fighters[i].attack);
             fighterContainer.append(fighterAttack);
 
             $("#" + fighters[i].idHealth).text(fighters[i].name + "'s" + " health is " + fighters[i].healthConst);
@@ -103,16 +101,15 @@ $(document).ready(function () {
         $(".info-pop-up").css("display", "none");
         $("#resetLoose").css("display", "none");
         $(".info-pop-up-text").css("color", "white");
-        
-        
+        $(this).css("pointer-events", "auto")
+
+
 
 
     }
 
     setUp();
-  
 
-    // $("#health-obi").text(fighters[0].name + "'s" + " health is " + fighters[0].health);
 
     function printStats() {
         for (var i = 0; i < fighters.length; i++) {
@@ -136,11 +133,13 @@ $(document).ready(function () {
 
     //puts chosen fighters into correct divs
     $(document).on('click', '.fighter-container', function () {
-      
+
         if (!fighterChosen) {
             $(this).appendTo(".fighter-display");
+            $(this).css("pointer-events", "none")
             $(this).hover(function () {
                 $(this).css("cursor", "auto");
+
             });
             $("#pick").text("PICK AN ENEMY");
             //makes choosing a new fighter impossible, because the fighterChosen is now true
@@ -153,6 +152,7 @@ $(document).ready(function () {
             $(this).appendTo(".enemy-display");
             $(this).hover(function () {
                 $(this).css("cursor", "auto");
+
             });
             //makes choosing a new fighter impossible, because the enemyChosen is now true
             enemyChosen = true;
@@ -167,84 +167,70 @@ $(document).ready(function () {
         if (!fighterChosen || !enemyChosen) {
             alert("please choose your characters");
         } else {
-        //save chosen fighters inside a variable
-        for (var i = 0; i < fighters.length; i++) {
-            if ((fighter.attr("id") == fighters[i].id)) {
-                fighterObj = fighters[i];
-                //  console.log(fighterObj);
-            } else if (enemy.attr("id") == fighters[i].id) {
-                enemyObj = fighters[i];
-                // console.log(enemyObj);
+            //save chosen fighters inside a variable
+            for (var i = 0; i < fighters.length; i++) {
+                if ((fighter.attr("id") == fighters[i].id)) {
+                    fighterObj = fighters[i];
+                    //  console.log(fighterObj);
+                } else if (enemy.attr("id") == fighters[i].id) {
+                    enemyObj = fighters[i];
+                    // console.log(enemyObj);
+                }
             }
 
-            // if ($(window).width() < 690) {
-            //     $("#attack-desktop").hide();
-            //     $("#attack-mobile").show();
-   
-            //  }
-            //  else if ($(window).width() > 691) {
-            //     $("#attack-mobile").hide();
-            //     $("#attack-desktop").show();
-               
-            //  }
-             
-        }
-
-        //fight container info populates dynamically
-        function printFightInfo(){
-        $(".fighter-damage").text(fighterObj.name + " damaged " + enemyObj.name + " for " + fighterObj.attackNew + " points!");
-        $(".enemy-damage").text(enemyObj.name + " damaged " + fighterObj.name + " for " + enemyObj.attackNew + " points!");
-        $(".attack-info-all").css("border", "1px black solid");
-        }
-
-        //all the health related functions
-        function subtractHealth() {
-            fighterObj.health = fighterObj.health - enemyObj.attackNew;
-            enemyObj.health = enemyObj.health - fighterObj.attackNew;
-            fighterObj.attackNew = fighterObj.attackNew + fighterObj.attack;
-
-        
-
-
-
-            if (fighterObj.health <= 0) {
-                //console.log("you lost!")
-                $(".info-pop-up-text").text(enemyObj.name + " killed you!");
-                $("#resetLoose").css("display", "block");
-                $(".info-pop-up").css("display", "flex");
-          
+            //fight container info populates dynamically
+            function printFightInfo() {
+                $(".fighter-damage").text(fighterObj.name + " damaged " + enemyObj.name + " for " + fighterObj.attackNew + " points!");
+                $(".enemy-damage").text(enemyObj.name + " damaged " + fighterObj.name + " for " + enemyObj.attackNew + " points!");
+                $(".attack-info-all").css("border", "1px black solid");
             }
 
-            if (enemyObj.health <= 0) {
-                $(".enemy-display").empty();
-                $(".info-pop-up-text").text(enemyObj.name + " is dead! Pick your next enemy!");
-                $(".info-pop-up").css("display", "flex");
-                setTimeout(function () {
+            //all the health related functions
+            function subtractHealth() {
+                fighterObj.health = fighterObj.health - enemyObj.attackNew;
+                enemyObj.health = enemyObj.health - fighterObj.attackNew;
+                fighterObj.attackNew = fighterObj.attackNew + fighterObj.attack;
+
+
+
+
+
+                if (fighterObj.health <= 0) {
+                    $(".info-pop-up-text").text(enemyObj.name + " killed you!");
+                    $("#resetLoose").css("display", "block");
+                    $(".info-pop-up").css("display", "flex");
+
+                }
+
+                if (enemyObj.health <= 0) {
+                    $(".enemy-display").empty();
+                    $(".info-pop-up-text").text(enemyObj.name + " is dead! Pick your next enemy!");
+                    $(".info-pop-up").css("display", "flex");
+                    setTimeout(function () {
+                        $(".info-pop-up").css("display", "none");
+                    }, 2500);
+
+                    $(".enemyDisplay").empty();
+                    enemyChosen = false;
+                    defeatedFighters.push(enemyObj);
+                }
+
+                if (defeatedFighters.length == 3) {
+                    $(".info-pop-up-text").css("color", "red");
+                    $(".ultimate-win").css("display", "flex");
                     $(".info-pop-up").css("display", "none");
-                }, 2500);
+                    $(".ultimate-win-text").text(" You are the supreme winner");
 
-                $(".enemyDisplay").empty();
-                enemyChosen = false;
-                defeatedFighters.push(enemyObj);
-                //console.log(defeatedFighters);
+                }
             }
 
-            if (defeatedFighters.length == 3) {
-                $(".info-pop-up-text").css("color", "red");
-                $(".ultimate-win").css("display", "flex");
-                $(".info-pop-up").css("display", "none");
-                $(".ultimate-win-text").text(" You are the supreme winner");
 
-            }
+            $(".attack-info-all").show();
+            printFightInfo();
+            subtractHealth();
+            printStats();
+
         }
-
-
-        $(".attack-info-all").show();
-        printFightInfo();
-        subtractHealth();
-        printStats();
-      
-    }
 
     });
 
