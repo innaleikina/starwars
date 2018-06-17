@@ -9,7 +9,9 @@ $(document).ready(function () {
             health: 120,
             healthConst: 120,
             attack: 8,
-            attackNew: 8
+            attackNew: 8,
+            counterAttack: 15,
+
         },
         {
             img: "./resources/images/luke.jpg",
@@ -19,8 +21,9 @@ $(document).ready(function () {
             idAttack: "attack-luke",
             health: 100,
             healthConst: 100,
-            attack: 5,
-            attackNew: 5
+            attack: 15,
+            attackNew: 15,
+            counterAttack: 5
 
         },
         {
@@ -31,8 +34,9 @@ $(document).ready(function () {
             idAttack: "attack-darth-s",
             health: 150,
             healthConst: 150,
-            attack: 20,
-            attackNew: 20
+            attack: 5,
+            attackNew: 5,
+            counterAttack: 20,
         },
         {
             img: "./resources/images/maul.jpg",
@@ -42,8 +46,9 @@ $(document).ready(function () {
             idAttack: "attack-darth-m",
             health: 180,
             healthConst: 180,
-            attack: 25,
-            attackNew: 25
+            attack: 3,
+            attackNew: 3,
+            counterAttack: 25
         }
     ]
 
@@ -89,7 +94,7 @@ $(document).ready(function () {
             fighterContainer.append(fighterAttack);
 
             $("#" + fighters[i].idHealth).text(fighters[i].name + "'s" + " health is " + fighters[i].healthConst);
-            $("#" + fighters[i].idAttack).text(fighters[i].name + "'s" + " attack is " + fighters[i].attack);
+            // $("#" + fighters[i].idAttack).text(fighters[i].name + "'s" + " attack is " + fighters[i].attack);
 
             fighters[i].attackNew = Number(fighters[i].attack);
             fighters[i].health = Number(fighters[i].healthConst);
@@ -115,7 +120,7 @@ $(document).ready(function () {
         for (var i = 0; i < fighters.length; i++) {
             // console.log(fighters[i].selectorHealth);
             $("#" + fighters[i].idHealth).text(fighters[i].name + "'s" + " health is " + fighters[i].health);
-            $("#" + fighters[i].idAttack).text(fighters[i].name + "'s" + " attack is " + fighters[i].attackNew);
+            // $("#" + fighters[i].idAttack).text(fighters[i].name + "'s" + " attack is " + fighters[i].attackNew);
         }
     }
 
@@ -180,14 +185,17 @@ $(document).ready(function () {
 
             //fight container info populates dynamically
             function printFightInfo() {
+                $("#" + fighterObj.idAttack).text(fighterObj.name + "'s" + " attack is " + fighterObj.attackNew);
                 $(".fighter-damage").text(fighterObj.name + " damaged " + enemyObj.name + " for " + fighterObj.attackNew + " points!");
-                $(".enemy-damage").text(enemyObj.name + " damaged " + fighterObj.name + " for " + enemyObj.attackNew + " points!");
+                $("#" + enemyObj.idAttack).text(enemyObj.name + "'s" + " attack is " + enemyObj.counterAttack);
+                $(".enemy-damage").text(enemyObj.name + " damaged " + fighterObj.name + " for " + enemyObj.counterAttack + " points!");
                 $(".attack-info-all").css("border", "1px black solid");
+
             }
 
             //all the health related functions
             function subtractHealth() {
-                fighterObj.health = fighterObj.health - enemyObj.attackNew;
+                fighterObj.health = fighterObj.health - enemyObj.counterAttack;
                 enemyObj.health = enemyObj.health - fighterObj.attackNew;
                 fighterObj.attackNew = fighterObj.attackNew + fighterObj.attack;
 
@@ -200,14 +208,17 @@ $(document).ready(function () {
                     $("#resetLoose").css("display", "block");
                     $(".info-pop-up").css("display", "flex");
 
+
                 }
 
                 if (enemyObj.health <= 0) {
                     $(".enemy-display").empty();
                     $(".info-pop-up-text").text(enemyObj.name + " is dead! Pick your next enemy!");
                     $(".info-pop-up").css("display", "flex");
+                    $(".resetWin").css("display", "none");
                     setTimeout(function () {
                         $(".info-pop-up").css("display", "none");
+
                     }, 2500);
 
                     $(".enemyDisplay").empty();
@@ -220,6 +231,7 @@ $(document).ready(function () {
                     $(".ultimate-win").css("display", "flex");
                     $(".info-pop-up").css("display", "none");
                     $(".ultimate-win-text").text(" You are the supreme winner");
+                    $(".resetWin").css("display", "flex");
 
                 }
             }
