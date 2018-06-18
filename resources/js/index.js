@@ -68,6 +68,8 @@ $(document).ready(function () {
 
 
     function setUp() {
+
+
         for (var i = 0; i < fighters.length; i++) {
 
             var fighterContainer = $("<div>");
@@ -117,7 +119,7 @@ $(document).ready(function () {
         $("#resetLoose").css("display", "none");
         $(".info-pop-up-text").css("color", "white");
         $(this).css("pointer-events", "auto")
-
+        $("#reset").css("display", "block");
 
 
 
