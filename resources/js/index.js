@@ -6,6 +6,7 @@ $(document).ready(function () {
             id: "obi",
             idHealth: "health-obi",
             idAttack: "attack-obi",
+            idCounter: "counter-obi",
             health: 120,
             healthConst: 120,
             attack: 8,
@@ -19,6 +20,7 @@ $(document).ready(function () {
             id: "luke",
             idHealth: "health-luke",
             idAttack: "attack-luke",
+            idCounter: "counter-luke",
             health: 100,
             healthConst: 100,
             attack: 15,
@@ -32,6 +34,7 @@ $(document).ready(function () {
             id: "darth-s",
             idHealth: "health-darth-s",
             idAttack: "attack-darth-s",
+            idCounter: "counter-darth-s",
             health: 150,
             healthConst: 150,
             attack: 5,
@@ -44,6 +47,7 @@ $(document).ready(function () {
             id: "darth-m",
             idHealth: "health-darth-m",
             idAttack: "attack-darth-m",
+            idCounter: "counter-darth-m",
             health: 180,
             healthConst: 180,
             attack: 3,
@@ -88,13 +92,19 @@ $(document).ready(function () {
             fighterHealth.attr("id", fighters[i].idHealth);
             fighterContainer.append(fighterHealth);
 
+            var fighterCounter = $("<p>");
+            fighterCounter.addClass("attack");
+            fighterCounter.attr("id", fighters[i].idAttack);
+            fighterContainer.append(fighterCounter);
+
             var fighterAttack = $("<p>");
-            fighterAttack.addClass("attack");
-            fighterAttack.attr("id", fighters[i].idAttack);
+            fighterAttack.addClass("counterAttack");
+            fighterAttack.attr("id", fighters[i].idCounter);
             fighterContainer.append(fighterAttack);
 
             $("#" + fighters[i].idHealth).text(fighters[i].name + "'s" + " health is " + fighters[i].healthConst);
-            // $("#" + fighters[i].idAttack).text(fighters[i].name + "'s" + " attack is " + fighters[i].attack);
+            $("#" + fighters[i].idAttack).text(fighters[i].name + "'s" + " attack is " + fighters[i].attack);
+            $("#" + fighters[i].idCounter).text(fighters[i].name + "'s" + " counter attack is " + fighters[i].counterAttack);
 
             fighters[i].attackNew = Number(fighters[i].attack);
             fighters[i].health = Number(fighters[i].healthConst);
@@ -120,7 +130,6 @@ $(document).ready(function () {
         for (var i = 0; i < fighters.length; i++) {
             // console.log(fighters[i].selectorHealth);
             $("#" + fighters[i].idHealth).text(fighters[i].name + "'s" + " health is " + fighters[i].health);
-            // $("#" + fighters[i].idAttack).text(fighters[i].name + "'s" + " attack is " + fighters[i].attackNew);
         }
     }
 
@@ -150,8 +159,8 @@ $(document).ready(function () {
             //makes choosing a new fighter impossible, because the fighterChosen is now true
             fighterChosen = true;
             // console.log(fighterChosen)
-
-            fighter = $(".fighter-display").children(".fighter-container");
+             fighter = $(".fighter-display").children(".fighter-container");
+          
             //console.log("this is the fighter" + fighter);
         } else if (!enemyChosen) {
             $(this).appendTo(".enemy-display");
@@ -185,9 +194,13 @@ $(document).ready(function () {
 
             //fight container info populates dynamically
             function printFightInfo() {
+                $("#" + fighterObj.idCounter).css("display", "none");
                 $("#" + fighterObj.idAttack).text(fighterObj.name + "'s" + " attack is " + fighterObj.attackNew);
                 $(".fighter-damage").text(fighterObj.name + " damaged " + enemyObj.name + " for " + fighterObj.attackNew + " points!");
-                $("#" + enemyObj.idAttack).text(enemyObj.name + "'s" + " attack is " + enemyObj.counterAttack);
+
+
+                $("#" + enemyObj.idAttack).css("display", "none");
+                $("#" + enemyObj.idAttack).text(enemyObj.name + "'s" + " counter attack is " + enemyObj.counterAttack);
                 $(".enemy-damage").text(enemyObj.name + " damaged " + fighterObj.name + " for " + enemyObj.counterAttack + " points!");
                 $(".attack-info-all").css("border", "1px black solid");
 

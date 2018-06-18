@@ -34,6 +34,7 @@ html {
     text-align: center;
     padding: 20px;
     transition: .4s all linear;
+    display:block;
 }
 
 #reset:hover {
@@ -220,9 +221,10 @@ h3 {
     background-color: white;
     width: 220px;
     height: 220px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
     border: 1px gray solid;
+
 }
 
 @media only screen and (max-width:727px) {
